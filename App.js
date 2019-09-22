@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import {
   StyleSheet,
   Text,
@@ -10,36 +10,40 @@ import {
   Picker
 } from "react-native";
 
-state = { mezua: "kaixo" };
+export default class test extends Component {
+  state = { mezua: "kaixo", hizkuntza: "Euskera" };
+  render() {
+    return (
+      <View style={css.container}>
+        <Text style={css.letra}>Kaixo Adei!!!</Text>
 
-export default function App() {
-  return (
-    <View style={css.container}>
-      <Text style={css.margina}>Kaixo Adei!!!</Text>
+        <Button
+          title="Alerta ireki"
+          onPress={() => Alert.alert(this.state.mezua)}
+        />
 
-      <Button title="Alerta ireki" onPress={() => Alert.alert(state.mezua)} />
+        <TextInput
+          placeholder="Idatzi zerbait hemen"
+          style={css.textusarrera}
+          onChangeText={text => this.setState({ mezua: text })}
+        />
 
-      <TextInput
-        placeholder="Idazti zerbait hemen"
-        onChange={() => this.setState({ mezua: "beste bar" })}
-        style={{
-          height: 40,
-          width: 300,
-          borderColor: "#274441",
-          borderWidth: 1,
-          margin: 30
-        }}
-      />
+        <ActivityIndicator style={css.margina} size="large" color="#666" />
 
-      <ActivityIndicator style={css.margina} size="large" color="#666" />
-
-      <Picker style={{ height: 50, width: 100 }}>
-        <Picker.Item label="Java" value="java" />
-        <Picker.Item label="JavaScript" value="js" />
-        <Picker.Item label="hlola" value="ss" />
-      </Picker>
-    </View>
-  );
+        <Picker
+          style={css.piker}
+          selectedValue={this.state.hizkuntza}
+          onValueChange={(itemValue, itemIndex) =>
+            this.setState({ hizkuntza: itemValue, mezua: "Hello" })
+          }
+        >
+          <Picker.Item label="Euskera" value="Euskera" />
+          <Picker.Item label="Gaztelania" value="Gaztelania" />
+          <Picker.Item label="Ingelesa" value="Ingelesa" />
+        </Picker>
+      </View>
+    );
+  }
 }
 
 const css = StyleSheet.create({
@@ -49,7 +53,19 @@ const css = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center"
   },
-  margina: {
-    margin: 20
-  }
+  letra: {
+    margin: 20,
+    fontFamily: "Roboto",
+    fontSize: 30,
+    fontWeight: "bold"
+  },
+  textusarrera: {
+    height: 40,
+    width: 350,
+    borderColor: "#274441",
+    borderWidth: 1,
+    margin: 30,
+    padding: 5
+  },
+  piker: { width: 300, height: 60, padding: 5, fontSize: 6 }
 });
