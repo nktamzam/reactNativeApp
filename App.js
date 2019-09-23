@@ -1,46 +1,59 @@
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  Text,
-  TextInput,
-  Alert,
-  View,
-  Button,
-  ActivityIndicator,
-  Picker
-} from "react-native";
+import { StyleSheet, Text, Alert, View, Button, Picker } from "react-native";
 
 export default class test extends Component {
-  state = { mezua: "kaixo", hizkuntza: "Euskera" };
+  state = {
+    lana: 25,
+    atsedena: 5
+  };
   render() {
     return (
       <View style={css.container}>
-        <Text style={css.letra}>Kaixo Adei!!!</Text>
-
-        <Button
-          title="Alerta ireki"
-          onPress={() => Alert.alert(this.state.mezua)}
-        />
-
-        <TextInput
-          placeholder="Idatzi zerbait hemen"
-          style={css.textusarrera}
-          onChangeText={text => this.setState({ mezua: text })}
-        />
-
-        <ActivityIndicator style={css.margina} size="large" color="#666" />
-
-        <Picker
-          style={css.piker}
-          selectedValue={this.state.hizkuntza}
-          onValueChange={(itemValue, itemIndex) =>
-            this.setState({ hizkuntza: itemValue, mezua: "Hello" })
-          }
-        >
-          <Picker.Item label="Euskera" value="Euskera" />
-          <Picker.Item label="Gaztelania" value="Gaztelania" />
-          <Picker.Item label="Ingelesa" value="Ingelesa" />
-        </Picker>
+        <View style={css.lerroan}>
+          <View style={css.select}>
+            <Picker
+              selectedValue={this.state.lana}
+              onValueChange={(itemValue, itemIndex) =>
+                this.setState({
+                  lana: itemValue
+                })
+              }
+            >
+              <Picker.Item label="5" value="10" />
+              <Picker.Item label="10" value="15" />
+              <Picker.Item label="15" value="10" />
+              <Picker.Item label="20" value="20" />
+              <Picker.Item label="25" value="25" />
+              <Picker.Item label="30" value="20" />
+            </Picker>{" "}
+            <Text> Lana </Text>{" "}
+          </View>{" "}
+          <View style={css.select}>
+            <Picker
+              selectedValue={this.state.atsedena}
+              onValueChange={(itemValue, itemIndex) =>
+                this.setState({
+                  atsedena: itemValue
+                })
+              }
+            >
+              <Picker.Item label="5" value="10" />
+              <Picker.Item label="10" value="15" />
+              <Picker.Item label="15" value="10" />
+              <Picker.Item label="20" value="20" />
+              <Picker.Item label="25" value="25" />
+              <Picker.Item label="30" value="20" />
+            </Picker>{" "}
+            <Text> Atsedena </Text>{" "}
+          </View>{" "}
+        </View>{" "}
+        <Text style={css.denbora}> 15: 25 </Text>{" "}
+        <View style={css.botoia}>
+          <Button
+            title="Hasi lanean"
+            onPress={() => Alert.alert(this.state.lana)}
+          />{" "}
+        </View>{" "}
       </View>
     );
   }
@@ -49,23 +62,34 @@ export default class test extends Component {
 const css = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#eee",
+    backgroundColor: "#ef0b7c",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    padding: 5,
+    fontFamily: "sans-serif"
   },
-  letra: {
+  denbora: {
     margin: 20,
-    fontFamily: "Roboto",
-    fontSize: 30,
-    fontWeight: "bold"
+    fontSize: 110,
+    fontFamily: "sans-serif-thin",
+    color: "white",
+    flex: 4
   },
-  textusarrera: {
-    height: 40,
-    width: 350,
-    borderColor: "#274441",
-    borderWidth: 1,
-    margin: 30,
-    padding: 5
+  botoia: {
+    fontSize: 55,
+    width: "80%",
+    flex: 2
   },
-  piker: { width: 300, height: 60, padding: 5, fontSize: 6 }
+  lerroan: {
+    flexDirection: "row"
+  },
+  select: {
+    flex: 1,
+    padding: 5,
+    fontSize: 50,
+    backgroundColor: "#ac5e85",
+    borderRadius: 5,
+    margin: "10%",
+    justifyContent: "center"
+  }
 });
