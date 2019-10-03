@@ -6,7 +6,7 @@ export default class HeaderTop extends Component {
     return (
       <View style={style.container}>
         <View style={{ flex: 2, padding: 3 }}>
-          <Text style={style.wpp}>WathsApp</Text>
+          <Text style={style.wpp}>WhatsApp</Text>
         </View>
         <View style={style.botonSearch}>
           <Image

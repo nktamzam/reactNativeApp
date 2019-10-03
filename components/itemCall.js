@@ -6,7 +6,10 @@ export default class ItemCall extends Component {
     return (
       <View style={style.container}>
         <Image style={style.avatar} source={this.props.src} />
-        <Text style={style.nombre}>{this.props.nombre}</Text>
+        <View>
+          <Text style={style.nombre}>{this.props.nombre}</Text>
+          <Text style={style.fecha}>{this.props.fecha}</Text>
+        </View>
         <Image style={style.icono} source={this.props.modo} />
       </View>
     );
@@ -23,7 +26,6 @@ const style = StyleSheet.create({
     borderBottomWidth: 1
   },
   avatar: {
-    margin: 10,
     width: 100,
     height: 100,
     borderRadius: 50
@@ -36,7 +38,10 @@ const style = StyleSheet.create({
   nombre: {
     fontSize: 14,
     fontWeight: "bold",
+    textAlign: "left"
+  },
+  fecha: {
     textAlign: "left",
-    flex: 2
+    fontSize: 12
   }
 });
