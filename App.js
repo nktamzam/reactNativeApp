@@ -5,12 +5,28 @@ import HeaderMenu from "./components/headerMenu.js";
 import ItemCall from "./components/itemCall.js";
 
 export default class app extends Component {
+  state = { pagina: "llamadas" };
+  cambia = destino => {
+    this.setState({ pagina: destino });
+    setTimeout(() => alert(this.state.pagina), 500);
+  };
+
   render() {
     return (
       <View style={style.container}>
         <View style={style.header}>
           <HeaderTop></HeaderTop>
-          <HeaderMenu></HeaderMenu>
+          <HeaderMenu
+            cambiaaChats={() => {
+              this.cambia("chats");
+            }}
+            cambiaaEstados={() => {
+              this.cambia("estados");
+            }}
+            cambiaaLlamadas={() => {
+              this.cambia("llamadas");
+            }}
+          ></HeaderMenu>
         </View>
         <ItemCall
           nombre="Pepe Pig"
