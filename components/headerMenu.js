@@ -35,5 +35,5 @@ const style = StyleSheet.create({
     justifyContent: "space-around",
     paddingBottom: 20
   },
-  font: { color: "#fff", fontSize: 16, textDecorationLine: "underline" }
+  font: { color: "#fff", fontSize: 16 }
 });
